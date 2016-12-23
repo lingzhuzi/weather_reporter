@@ -1,0 +1,49 @@
+html, body {
+  padding: 0;
+  margin: 0;
+
+}
+
+.tool-bar {
+  text-align: right;
+  background: white;
+  position: relative;
+  padding: 10px 20px;
+}
+
+.tool-bar a {
+  text-decoration: none;
+}
+
+.tool-bar a:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+.content {
+  /*width: 580px;
+  height: 580px;*/
+}
+
+.nav {
+  position: relative;
+  background: white;
+}
+
+.frame {
+  width: 580px;
+  height: 440px;
+  display: none;
+}
+
+.weather-frame {
+  margin-top: -160px;
+  margin-left: -100px;
+  width: 680px;
+  height: 600px;
+  display: none;
+}
+
+.frame.active {
+  display: initial;
+}
