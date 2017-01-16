@@ -3,9 +3,9 @@
   "description": "天气预报",
   "version": "1.0",
   "icons": {
-    "16": "img/icon_16.png",
-    "48": "img/icon_48.png",
-    "128": "img/icon.png"
+    "128": "img/logo128.png",
+    "48":  "img/logo48.png",
+    "16":  "img/logo16.png"
   },
   "background": {
     "scripts": ["js/background.js"],
@@ -17,7 +17,7 @@
   ],
   "browser_action": {
     "default_title": "天气预报",
-    "default_icon": "img/icon.png",
+    "default_icon": "img/logo128.png",
     "default_popup": "popup.html"
   },
   "manifest_version": 2,

@@ -5,15 +5,23 @@ $(function(){
   showSelectedCities();
 
   $('#btnAddCity').click(function(){
-    addCity();
-  });
-
-  $('#saveBtn').click(function(){
+    var cityName = $('#city3 option:selected').text();
+    showCity(cityName);
     saveOptions();
   });
 
   $('#selectCityList').dblclick(function(){
     $(this).find("option:selected").remove();
+  });
+
+  $(document).on('click', '.del-btn', function(){
+    var $this = $(this);
+    if (confirm('确定删除？')) {
+      var $tr = $this.parents('tr');
+      var cityName = $tr.find('td:first').text();
+      $tr.remove();
+      saveOptions();
+    }
   });
 
   function showSelectedCities(){
@@ -23,42 +31,32 @@ $(function(){
 
       for(var i=0;i<cityNameList.length;i++){
         var cityName = cityNameList[i];
-        var selectCityList = document.getElementById('selectCityList');
-        selectCityList.options.add(new Option(cityName, cityName));
+        showCity(cityName);
       }
     }
   }
 
-  function addCity(){
-    var cityName = $('#city3 option:selected').text();
-    var selectCityList = document.getElementById('selectCityList');
-    var isSave = true;
-    for (var i = 0; i < selectCityList.options.length; i++) {
-        if (selectCityList.options[i].text == cityName) {
-            isSave = false;
-            break;
-        }
-    }
-    if (isSave) {
-        selectCityList.options.add(new Option(cityName, cityName));
-    }
+  function showCity(cityName){
+    var template = '<tr><td></td><td><a href="#" class="del-btn">删除</a></td></tr>';
+    var $container = $('table.cities tbody');
+    var $line = $(template);
+    $line.find('td:first').text(cityName);
+    $container.append($line);
   }
 
   function saveOptions(){
-    var obj = document.getElementById("city3");
-    var strsel = obj.options[obj.selectedIndex].text;
-    if (strsel == "县") {
-      alert("请选择您要定制的城市");
-    } else {
-      var selectCityList = document.getElementById('selectCityList');
-      var cityNameList = "";
-      for (var i = 0; i < selectCityList.options.length; i++) {
-          cityNameList += ',' + (selectCityList.options[i].innerText || selectCityList.options[i].innerHTML);
-      }
-      cityNameList = cityNameList.substr(1);
-      localStorage["cityNameList"] = cityNameList;
+      var cityNameList = [];
+      var $list = $('table.cities tbody td');
+      $list.each(function(index, obj){
+        var cityName = $(obj).text();
+        if (cityName != '删除'){
+          cityNameList.push(cityName);
+        }
+      })
+
+      localStorage["cityNameList"] = cityNameList.join(',');
       showMessage('保存成功', 1000);
-    }
+
   }
 
   function showMessage(msg, time){

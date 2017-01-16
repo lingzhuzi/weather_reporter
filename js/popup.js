@@ -55,7 +55,7 @@ $(function(){
         var cityName = $this.attr('id').split('-')[1];
         $this.attr('src', 'https://www.baidu.com/s?ie=UTF-8&wd=' + cityName + "天气");
       });
-      $('#frame-万年历').attr('src', 'wannianli.html');
+      $('#frame-万年历').attr('src', 'https://www.baidu.com/s?ie=UTF-8&wd=%E4%B8%87%E5%B9%B4%E5%8E%86');
     }, 10);
   }
 
