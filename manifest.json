@@ -15,6 +15,7 @@
   "permissions": [
     "tabs", "http://*/*", "https://*/*", "notifications"
   ],
+  "update_url": "http://upext.chrome.360.cn/intf.php?method=ExtUpdate.query",
   "browser_action": {
     "default_title": "天气预报",
     "default_icon": "img/logo128.png",
