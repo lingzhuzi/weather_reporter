@@ -42,7 +42,7 @@ $(function() {
       }
 
       var classes = $div.attr('class');
-      if(classes.indexOf('result') == -1){
+      if(!classes || classes.indexOf('result') == -1){
         $div.remove();
       }
     }

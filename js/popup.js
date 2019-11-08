@@ -11,6 +11,7 @@ $(function(){
       $this.addClass('active');
 
       var cityName = $this.find('a').text();
+      loadContent(cityName);
       $('.frame').removeClass('active');
       $('#frame-' + cityName).addClass('active');
     });
@@ -26,7 +27,10 @@ $(function(){
     }
     $nav.append(buildTab('万年历', cityNameList.length == 0));
     bindTabEvents();
-    loadContents();
+
+    setTimeout(function() {
+     loadContent(cityNameList[0]);
+    }, 50);
   }
 
   function buildTab(cityName, isActive){
@@ -48,15 +52,13 @@ $(function(){
     return $frame;
   }
 
-  function loadContents(){
-    setTimeout(function(){
-      $('.weather-frame').each(function(){
-        var $this = $(this);
-        var cityName = $this.attr('id').split('-')[1];
-        $this.attr('src', 'https://www.baidu.com/s?ie=UTF-8&wd=' + cityName + "天气");
-      });
-      $('#frame-万年历').attr('src', 'https://www.baidu.com/s?ie=UTF-8&wd=%E4%B8%87%E5%B9%B4%E5%8E%86');
-    }, 10);
+  function loadContent(cityName) {
+    var $frame = $('#frame-' + cityName);
+    if (!$frame.attr('src')) {
+      var wd = cityName == '万年历' ? '万年历' : cityName + '天气';
+      var src = 'https://www.baidu.com/s?ie=UTF-8&wd=' + wd;
+      $frame.attr('src', src);
+    }
   }
 
   function getCityNameList(){
